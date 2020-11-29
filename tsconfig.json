@@ -19,6 +19,10 @@
       "@ohm/utils": [
         "dist/ohm-lib/ohm-lib",
         "dist/ohm-lib"
+      ],
+      "ohm-common": [
+        "dist/ohm-common/ohm-common",
+        "dist/ohm-common"
       ]
     }
   }

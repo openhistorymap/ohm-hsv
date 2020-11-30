@@ -12,6 +12,7 @@ export class MapComponent implements OnInit {
   map;
 
   @Output() itemSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Output() moveend: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
@@ -19,10 +20,15 @@ export class MapComponent implements OnInit {
     this.map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/light-v10', // style URL
-      center: [-74.5, 40], // starting position [lng, lat]
-      zoom: 9 // starting zoom
+      center: [11.34359240476931, 44.49484685252506], // starting position [lng, lat]
+      zoom: 14 // starting zoom
     });
     
+    this.map.on('moveend', () => {
+      const c = this.map.getCenter();
+      const z = this.map.getZoom();
+      this.moveend.emit({lng: c.lng, lat: c.lat, zoom: z});
+    });
   }
 
 }

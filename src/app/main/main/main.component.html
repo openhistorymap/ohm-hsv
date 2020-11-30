@@ -13,8 +13,8 @@
         <app-viewer #viewer></app-viewer>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-map (itemSelected)="viewer.item=$event"></app-map>
-        <app-timeline></app-timeline>
+        <app-map (itemSelected)="viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
+        <app-timeline (dateChanged)="onDateChange($event)"></app-timeline>
     </mat-sidenav-content>
   </mat-sidenav-container>
   

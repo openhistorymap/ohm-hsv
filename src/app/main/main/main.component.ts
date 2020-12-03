@@ -1,6 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { DialogComponent } from 'src/app/uploader/dialog/dialog.component';
+import { UploaderComponent } from 'src/app/uploader/uploader/uploader.component';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   selector: 'app-main',
@@ -11,19 +15,27 @@ export class MainComponent implements OnInit {
 
 
   @Output() newState: EventEmitter<any> = new EventEmitter<any>();
-  atDate;
-  zoom;
-  lat;
-  lng;
+  atDate = 1866;
+  zoom = 14;
+  lat = 44.49640804841195;
+  lng = 11.343678235458356;
   item;
+
+  @ViewChild(MapComponent) map: MapComponent;
 
   constructor(
     private l: Location,
     private ar: ActivatedRoute,
-
+    private d: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.ar.params.subscribe(params => {
+      this.atDate = params.atDate;
+      this.zoom = params.zoom;
+      this.lat = params.lat;
+      this.lng = params.lng;
+    })
   }
 
   showItem(data) {
@@ -52,5 +64,9 @@ export class MainComponent implements OnInit {
       lat: this.lat,
       lng: this.lng
     })
+  }
+
+  addImage() {
+    this.d.open(DialogComponent);
   }
 }

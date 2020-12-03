@@ -1,0 +1,31 @@
+<table>
+    <tr><td colspan="3">
+        <h2>Tipologia di vista</h2>
+    </td></tr>
+    <tr><td colspan="2">Tipologia: </td><td><mat-select [(ngModel)]="meta.type">
+        <mat-option>Fotografia</mat-option>
+        <mat-option>Quadro</mat-option>
+        <mat-option>Veduta</mat-option>
+        <mat-option>Progetto</mat-option>
+    </mat-select></td></tr>
+    <tr><td colspan="2">Occasione: </td><td><mat-select [(ngModel)]="meta.subtype">
+        <mat-option>Evento</mat-option>
+        <mat-option>Documetazione</mat-option>
+        <mat-option></mat-option>
+    </mat-select></td></tr>
+    <tr><td colspan="3">
+        <h2>Datazione</h2>
+    </td></tr>
+    <tr><td colspan="2">Data: </td><td><input matInput type="date"></td></tr>
+    <tr><td colspan="3">
+        <h2>Dettagli</h2>
+    </td></tr>
+    <tr><td>Angolo:</td><td>{{meta?.angle}}°</td><td><mat-slider [min]="30" [max]="100" [(ngModel)]="meta.angle"></mat-slider></td></tr>
+    <tr><td>Altezza:</td><td>{{meta?.height}}m</td><td><mat-slider [(ngModel)]="meta.height"></mat-slider></td></tr>
+    <tr><td>Direzione:</td><td>{{meta?.direction}}°</td><td><mat-slider [min]="-180" [max]="180" [(ngModel)]="meta.direction"></mat-slider></td></tr>
+    <tr><td colspan="3">
+        <h2>Copyright</h2>
+    </td></tr>
+    <tr><td colspan="2">Licenza:</td><td><mat-slider [min]="-180" [max]="180" [(ngModel)]="meta.direction"></mat-slider></td></tr>
+    <tr><td colspan="2">Licenziatario:</td><td><mat-slider [min]="-180" [max]="180" [(ngModel)]="meta.direction"></mat-slider></td></tr>
+</table>

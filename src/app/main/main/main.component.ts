@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from 'src/app/uploader/dialog/dialog.component';
+import { LocatorComponent } from 'src/app/uploader/locator/locator.component';
 import { UploaderComponent } from 'src/app/uploader/uploader/uploader.component';
 import { MapComponent } from '../map/map.component';
 
@@ -39,7 +40,7 @@ export class MainComponent implements OnInit {
   }
 
   showItem(data) {
-
+    this.item = data;
   }
 
   onDateChange(data) {
@@ -68,5 +69,9 @@ export class MainComponent implements OnInit {
 
   addImage() {
     this.d.open(DialogComponent);
+  }
+
+  addLocation() {
+    this.d.open(LocatorComponent, {data: { image: this.item }});
   }
 }

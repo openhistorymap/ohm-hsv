@@ -1,0 +1,9 @@
+<p>locator works!</p>
+<tr><td colspan="4">
+    <div class="title">Dettagli</div>
+</td></tr>
+<tr><td>Direzione:</td><td>{{meta?.direction}}°</td><td><mat-slider [min]="-180" [max]="180" [(ngModel)]="meta.direction"></mat-slider></td><td rowspan="3">
+    <app-angle ></app-angle>
+</td></tr>
+<tr><td>Angolo di visuale:</td><td>{{meta?.angle}}°</td><td><mat-slider [min]="30" [max]="100" [(ngModel)]="meta.angle"></mat-slider></td></tr>
+<tr><td>Altezza:</td><td>{{meta?.height}}m</td><td><mat-slider [(ngModel)]="meta.height"></mat-slider></td></tr>

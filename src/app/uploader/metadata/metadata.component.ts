@@ -10,7 +10,9 @@ export class MetadataComponent implements OnInit {
   meta: any = {
     angle: 70,
     height: 1.60,
-    direction: 0
+    direction: 0,
+    type: 'photo',
+    subtype: 'documentation'
   };
   constructor() { }
 

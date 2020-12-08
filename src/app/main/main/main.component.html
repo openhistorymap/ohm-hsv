@@ -3,8 +3,9 @@
     <span class="title">OHM Historical View</span>
     <span class="spacer"></span>
     <span class="spacer"></span>
-    <button (click)="addImage()" mat-button mat-icon-button><mat-icon>add</mat-icon></button>
-    <button (click)="localside.toggle()" mat-button mat-icon-button><mat-icon>menu</mat-icon></button>
+    <button (click)="addImage()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
+    <button (click)="addLocation()" mat-button mat-icon-button><mat-icon>map</mat-icon></button>
+    <button [disabled]="viewer.item!==null" (click)="localside.toggle()" mat-button mat-icon-button><mat-icon>room</mat-icon></button>
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">

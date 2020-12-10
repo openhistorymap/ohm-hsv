@@ -23,6 +23,7 @@ export class UploaderComponent implements ControlValueAccessor {
   private onChangeCallback: (_: any) => void = noop;
 
   constructor() {}
+  
   writeValue(value: any): void {
     if (value !== this.innerValue) {
       this.innerValue = value;

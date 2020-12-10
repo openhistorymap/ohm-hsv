@@ -11,7 +11,8 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'app-metadata',
   templateUrl: './metadata.component.html',
-  styleUrls: ['./metadata.component.scss']
+  styleUrls: ['./metadata.component.scss'],
+  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class MetadataComponent implements ControlValueAccessor {
   private innerValue: any = {
@@ -32,7 +33,7 @@ export class MetadataComponent implements ControlValueAccessor {
   constructor() {}
   writeValue(value: any): void {
     if (value !== this.innerValue) {
-      this.innerValue = value;
+      this.innerValue = {...value, ...this.innerValue};
   }  }
 
   get value(): any {

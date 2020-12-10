@@ -1,45 +1,119 @@
 <table style="width:100%">
-    <tr><td colspan="4">
-        <div class="title">Tipologia di vista</div>
-    </td></tr>
-    <tr><td colspan="2">Tipologia: </td><td colspan="2"><mat-select [(ngModel)]="meta.type">
-        <mat-option value="photo">Fotografia</mat-option>
-        <mat-option value="painting">Quadro</mat-option>
-        <mat-option value="view">Veduta</mat-option>
-        <mat-option value="plan">Progetto</mat-option>
-    </mat-select></td></tr>
-    <tr><td colspan="2">Occasione: </td><td colspan="2"><mat-select [(ngModel)]="meta.subtype">
-        <mat-option value="event">Evento</mat-option>
-        <mat-option value="documentation">Documetazione</mat-option>
-    </mat-select></td></tr>
-    <tr><td colspan="4">
-        <div class="title">Datazione</div>
-    </td></tr>
+  <tr>
+    <td colspan="4">
+      <div class="title">Tipologia di vista</div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">Tipologia: </td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <mat-select [(ngModel)]="value.type">
+          <mat-option value="photo">Fotografia</mat-option>
+          <mat-option value="painting">Quadro</mat-option>
+          <mat-option value="view">Veduta</mat-option>
+          <mat-option value="plan">Progetto</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">Occasione: </td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <mat-select [(ngModel)]="value.subtype">
+          <mat-option value="event">Evento</mat-option>
+          <mat-option value="documentation">Documentazione</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr *ngIf="value.subtype === 'event'">
+    <td colspan="2">Evento:</td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <input matInput [(ngModel)]="value.licensee" type="text">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="title">Datazione</div>
+    </td>
+  </tr>
 
-    <tr><td colspan="2">tipologia: </td><td colspan="2">
-        <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group"
-            [(ngModel)]="meta.dating">
-            <mat-radio-button class="example-radio-button" value="precise">Data precisa</mat-radio-button>
-            <mat-radio-button class="example-radio-button" value="period">Periodo</mat-radio-button>
-        </mat-radio-group>
-    </td></tr>
-    <tr *ngIf="meta.dating ==='precise'"><td colspan="2">Data: </td><td colspan="2"><input matInput type="date"></td></tr>
-    <tr *ngIf="meta.dating ==='period'"><td colspan="2">Data inizio: </td><td colspan="2"><input matInput type="date"></td></tr>
-    <tr *ngIf="meta.dating ==='period'"><td colspan="2">Data fine: </td><td colspan="2"><input matInput type="date"></td></tr>
-       <tr><td colspan="4">
-        <div class="title">Copyright</div>
-    </td></tr>
-    <tr><td colspan="2">Licenza:</td><td  colspan="2"><mat-select [(ngModel)]="meta.type">
-        <mat-option>Fotografia</mat-option>
-        <mat-option>Quadro</mat-option>
-        <mat-option>Veduta</mat-option>
-        <mat-option>Progetto</mat-option>
-    </mat-select></td></tr>
-    <tr><td colspan="2">Licenziatario:</td><td colspan="2"><input matInput type="text"></td></tr>
-    <tr><td colspan="3">
-        <div class="title">Note</div>
-    </td></tr>
-    <!--<tr><td colspan="3"><textarea name="notes" matInput [(ngModel)]="meta.notes"></textarea></td></tr>-->
+  <tr>
+    <td colspan="2">tipologia: </td>
+    <td colspan="2">
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+        [(ngModel)]="value.dating">
+        <mat-radio-button class="example-radio-button" value="precise">Data precisa</mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="period">Periodo</mat-radio-button>
+      </mat-radio-group>
+    </td>
+  </tr>
+  <tr *ngIf="value.dating ==='precise'">
+    <td colspan="2">Data: </td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <input matInput type="date">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr *ngIf="value.dating ==='period'">
+    <td colspan="2">Data inizio: </td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <input matInput type="date">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr *ngIf="value.dating ==='period'">
+    <td colspan="2">Data fine: </td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <input matInput type="date">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div class="title">Copyright</div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">Licenza:</td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <mat-select [(ngModel)]="value.license">
+          <mat-option value="pd">Dominio pubblico</mat-option>
+          <mat-option value="cc-by">CC-BY</mat-option>
+          <mat-option value="cc-by-sa">CC-BY-SA</mat-option>
+          <mat-option value="reserved">Riservato</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">Licenziatario:</td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <input matInput [(ngModel)]="value.licensee" type="text">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <div class="title">Note</div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <mat-form-field appearance="standard" style="width:100%">
+        <textarea name="notes" matInput [(ngModel)]="value.notes"></textarea>
+      </mat-form-field>
+    </td>
+  </tr>
 </table>
+
+{{value|json}}

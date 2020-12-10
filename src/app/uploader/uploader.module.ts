@@ -4,12 +4,14 @@ import { MetadataComponent } from './metadata/metadata.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { DialogComponent } from './dialog/dialog.component';
 
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { FormsModule } from '@angular/forms';
 import { LocatorComponent } from './locator/locator.component';
@@ -29,7 +31,9 @@ import { AngleComponent } from './angle/angle.component';
     MatSelectModule,
     MatStepperModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   exports: [DialogComponent]
 })

@@ -1,15 +1,16 @@
 <div mat-dialog-content class="row">
-    <div class="col" style="width:480px">
-        <app-uploader></app-uploader>
-
-    </div>
-    <div class="col" style="width:480px; margin-left: 16px">
-
-    <app-metadata></app-metadata>
+  <div class="col" style="width:480px">
+    <app-uploader [(ngModel)]="upload.url"></app-uploader>
+  </div>
+  <div class="col" style="width:480px; margin-left: 16px">
+    <app-metadata [(ngModel)]="upload.meta"></app-metadata>
+  </div>
 </div>
 
-</div>
-
+{{upload|json}}
 <div mat-dialog-actions>
-    <button mat-button>Save</button>
+  <div class="spacer"></div>
+  <button mat-button>Cancel</button>
+  <button mat-button mat-raised-button color="primary">Save</button>
+  <button mat-button mat-raised-button color="primary">Save and Locate</button>
 </div>

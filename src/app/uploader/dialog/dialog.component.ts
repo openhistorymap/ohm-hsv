@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogComponent implements OnInit {
 
+  upload: any = {};
   constructor() { }
 
   ngOnInit(): void {

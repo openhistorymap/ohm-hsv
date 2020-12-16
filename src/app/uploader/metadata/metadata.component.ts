@@ -16,9 +16,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class MetadataComponent implements ControlValueAccessor {
   private innerValue: any = {
-    angle: 70,
-    height: 1.60,
-    direction: 0,
     type: 'photo',
     subtype: 'documentation',
     notes: '',
@@ -59,4 +56,10 @@ export class MetadataComponent implements ControlValueAccessor {
     this.onTouchedCallback();
   }
 
+
+  onChange(ev, prop) {
+    console.log(ev);
+    this.innerValue[prop] = ev;
+    this.onChangeCallback(this.innerValue);
+  }
 }

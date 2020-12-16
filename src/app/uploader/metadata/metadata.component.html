@@ -5,10 +5,18 @@
     </td>
   </tr>
   <tr>
+    <td colspan="2">Collezione: </td>
+    <td colspan="2">
+      <mat-form-field appearance="standard" style="width:100%">
+        <input matInput [(ngModel)]="value.collection" (ngModelChange)="onChange($event, 'collection')" type="text">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
     <td colspan="2">Tipologia: </td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <mat-select [(ngModel)]="value.type">
+        <mat-select [(ngModel)]="value.type" (ngModelChange)="onChange($event, 'type')">
           <mat-option value="photo">Fotografia</mat-option>
           <mat-option value="painting">Quadro</mat-option>
           <mat-option value="view">Veduta</mat-option>

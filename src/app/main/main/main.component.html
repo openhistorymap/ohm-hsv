@@ -5,16 +5,16 @@
     <span class="spacer"></span>
     <button (click)="addImage()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
     <button (click)="addLocation()" mat-button mat-icon-button><mat-icon>map</mat-icon></button>
-    <button [disabled]="viewer.item!==null" (click)="localside.toggle()" mat-button mat-icon-button><mat-icon>room</mat-icon></button>
+    <button [disabled]="viewer.item===undefined" (click)="localside.toggle()" mat-button mat-icon-button><mat-icon>room</mat-icon></button>
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">
     <mat-sidenav #globalside mode="over" >Sidenav content</mat-sidenav>
-    <mat-sidenav #localside mode="side" position="end" >
+    <mat-sidenav id="localside" #localside mode="side" position="end" >
         <app-viewer #viewer></app-viewer>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-map (itemSelected)="viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
+        <app-map (itemSelected)="localside.open(); viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
         <app-timeline (dateChanged)="onDateChange($event)"></app-timeline>
     </mat-sidenav-content>
   </mat-sidenav-container>

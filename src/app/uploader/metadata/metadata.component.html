@@ -29,7 +29,7 @@
     <td colspan="2">Occasione: </td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <mat-select [(ngModel)]="value.subtype">
+        <mat-select [(ngModel)]="value.subtype" (ngModelChange)="onChange($event, 'subtype')">
           <mat-option value="event">Evento</mat-option>
           <mat-option value="documentation">Documentazione</mat-option>
         </mat-select>
@@ -40,7 +40,7 @@
     <td colspan="2">Evento:</td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <input matInput [(ngModel)]="value.licensee" type="text">
+        <input matInput [(ngModel)]="value.event" type="text" (ngModelChange)="onChange($event, 'event')">
       </mat-form-field>
     </td>
   </tr>
@@ -54,7 +54,7 @@
     <td colspan="2">tipologia: </td>
     <td colspan="2">
       <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-        [(ngModel)]="value.dating">
+        [(ngModel)]="value.dating" (ngModelChange)="onChange($event, 'dating')">
         <mat-radio-button class="example-radio-button" value="precise">Data precisa</mat-radio-button>
         <mat-radio-button class="example-radio-button" value="period">Periodo</mat-radio-button>
       </mat-radio-group>
@@ -64,7 +64,7 @@
     <td colspan="2">Data: </td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <input matInput type="date">
+        <input matInput [(ngModel)]="value.date" type="date" (ngModelChange)="onChange($event, 'date')">
       </mat-form-field>
     </td>
   </tr>
@@ -72,7 +72,7 @@
     <td colspan="2">Data inizio: </td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <input matInput type="date">
+        <input matInput [(ngModel)]="value.date_from" type="date" (ngModelChange)="onChange($event, 'date_from')">
       </mat-form-field>
     </td>
   </tr>
@@ -80,7 +80,7 @@
     <td colspan="2">Data fine: </td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <input matInput type="date">
+        <input matInput [(ngModel)]="value.date_to" type="date" (ngModelChange)="onChange($event, 'date_to')">
       </mat-form-field>
     </td>
   </tr>
@@ -93,7 +93,7 @@
     <td colspan="2">Licenza:</td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <mat-select [(ngModel)]="value.license">
+        <mat-select [(ngModel)]="value.license" (ngModelChange)="onChange($event, 'license')">
           <mat-option value="pd">Dominio pubblico</mat-option>
           <mat-option value="cc-by">CC-BY</mat-option>
           <mat-option value="cc-by-sa">CC-BY-SA</mat-option>
@@ -106,7 +106,7 @@
     <td colspan="2">Licenziatario:</td>
     <td colspan="2">
       <mat-form-field appearance="standard" style="width:100%">
-        <input matInput [(ngModel)]="value.licensee" type="text">
+        <input matInput [(ngModel)]="value.licensee" type="text" (ngModelChange)="onChange($event, 'licensee')">
       </mat-form-field>
     </td>
   </tr>
@@ -118,7 +118,7 @@
   <tr>
     <td colspan="3">
       <mat-form-field appearance="standard" style="width:100%">
-        <textarea name="notes" matInput [(ngModel)]="value.notes"></textarea>
+        <textarea name="notes" matInput [(ngModel)]="value.notes" (ngModelChange)="onChange($event, 'notes')"></textarea>
       </mat-form-field>
     </td>
   </tr>

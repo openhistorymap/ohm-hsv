@@ -14,4 +14,13 @@ export class ViewerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  tabelize(item){
+    let ret = '<table>';
+    for(const k of Object.keys(item.properties)){
+      ret += '<tr><td>' + k + '</td><td>' + item.properties[k] + '</td></tr>';
+    }
+    ret+='</table>';
+    return ret;
+  }
+
 }

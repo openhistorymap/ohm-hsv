@@ -1,1 +1,20 @@
-<p>viewer works!</p>
+<img [src]="item?.properties.url" style="width: 100%">
+<h1>{{item?.properties.meta_name}}</h1>
+<div>{{item?.properties.meta_date_from}} - {{item?.properties.meta_date_to}}</div>
+<p>{{item?.properties.meta_description}}</p>
+<mat-chip-list>
+    <mat-chip>{{item?.properties.meta_type}}</mat-chip>
+    <mat-chip>{{item?.properties.meta_subtype}}</mat-chip>
+    <mat-chip>{{item?.properties.meta_collection}}</mat-chip>
+</mat-chip-list>
+
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              More info
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngIf="item" [innerHTML]="tabelize(item)"></div>
+    </mat-expansion-panel>
+</mat-accordion>

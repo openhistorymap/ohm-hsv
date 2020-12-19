@@ -11,6 +11,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { BrowserModule } from '@angular/platform-browser';
     MatIconModule,
     MatSidenavModule,
     MatDialogModule,
-    
+    MatChipsModule,
+    MatExpansionModule,
     CommonModule,
   ],
   exports: [MainComponent]

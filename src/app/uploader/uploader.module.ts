@@ -12,6 +12,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 import { FormsModule } from '@angular/forms';
 import { LocatorComponent } from './locator/locator.component';
@@ -33,7 +35,9 @@ import { AngleComponent } from './angle/angle.component';
     MatDialogModule,
     MatRadioModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   exports: [DialogComponent]
 })

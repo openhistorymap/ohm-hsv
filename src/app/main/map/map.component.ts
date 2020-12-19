@@ -29,6 +29,39 @@ export class MapComponent implements OnInit {
       const z = this.map.getZoom();
       this.moveend.emit({lng: c.lng, lat: c.lat, zoom: z});
     });
+
+    this.map.on('load', () => {
+      
+          this.map.addSource('pics', {
+            type: 'geojson',
+            data: '/assets/sample.json'
+          });
+      
+          this.map.addLayer({
+              'id': 'pics-dots',
+              'source': 'pics',
+              'type': 'circle',
+              'layout': {},
+              'paint': {
+                'circle-color': '#f08',
+                'circle-opacity': 0.4
+              }
+          });
+
+          this.map.on('mouseenter', 'pics-dots', () => {
+            this.map.getCanvas().style.cursor = 'pointer';
+          });
+            
+          // Change it back to a pointer when it leaves.
+          this.map.on('mouseleave', 'pics-dots', () => {
+            this.map.getCanvas().style.cursor = '';
+          });
+
+          this.map.on('click', 'pics-dots', (e) => {
+            this.itemSelected.emit(e.features[0]);
+          });
+
+    })
   }
 
 }

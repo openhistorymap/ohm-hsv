@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "properties": {
+      "id": 1,
+      "meta_name": "Fotografia dell'Emilia - Bologna - Madonna di San Luca",
+      "meta_date_from": 1860,
+      "meta_date_to": 1870,
+      "placing_direction": -125,
+      "placing_angle": 80,
+      "placing_height": 1.6,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Fotografia_dell%27Emilia_-_Bologna_-_Madonna_di_San_Luca.jpg",
+      "meta_type": "photo",
+      "meta_subtype": "documentation",
+      "meta_notes": "Photo taken by Pietro Poppi, 1833-1914",
+      "meta_dating": "period",
+      "meta_license": "pd",
+      "meta_collection": "Wikimedia Commons"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [11.300186070541429, 44.480449639624254]
+    }
+  }]
+}

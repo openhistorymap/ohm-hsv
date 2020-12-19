@@ -20,7 +20,8 @@ export class MainComponent implements OnInit {
   zoom = 14;
   lat = 44.49640804841195;
   lng = 11.343678235458356;
-  item;
+  item_id: string;
+  item: any;
 
   @ViewChild(MapComponent) map: MapComponent;
 
@@ -36,6 +37,9 @@ export class MainComponent implements OnInit {
       this.zoom = params.zoom;
       this.lat = params.lat;
       this.lng = params.lng;
+      if(params.ref) {
+        this.item_id = params.ref;
+      }
     })
   }
 
@@ -58,7 +62,11 @@ export class MainComponent implements OnInit {
 
   
   changeUrl(): void{
-    this.l.go(`/${this.atDate}/${this.zoom}/${this.lat}/${this.lng}`);
+    if( this.item) {
+      this.l.go(`/map/${this.atDate}/${this.zoom}/${this.lat}/${this.lng};ref=${this.item.properties.id}`);
+    } else {
+      this.l.go(`/map/${this.atDate}/${this.zoom}/${this.lat}/${this.lng}`);
+    }
     this.newState.emit({
       date: this.atDate,
       zoom: this.zoom,

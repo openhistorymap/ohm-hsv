@@ -33,13 +33,18 @@ export class MapComponent implements OnInit {
     this.map.on('load', () => {
       
           this.map.addSource('pics', {
-            type: 'geojson',
-            data: '/assets/sample.json'
+            type: 'vector',
+            tiles: [
+              'http://51.15.160.236:9055/1866/{z}/{x}/{y}/vector.pbf'
+            ],
+            'minzoom': 6,
+            'maxzoom': 14
           });
       
           this.map.addLayer({
               'id': 'pics-dots',
               'source': 'pics',
+              'source-layer':'pics',
               'type': 'circle',
               'layout': {},
               'paint': {

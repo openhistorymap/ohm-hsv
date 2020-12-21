@@ -53,7 +53,6 @@ export class MainComponent implements OnInit {
   }
 
   onMoveEnd(data) {
-    console.log(data);
     this.zoom = data.zoom;
     this.lat = data.lat;
     this.lng = data.lng;

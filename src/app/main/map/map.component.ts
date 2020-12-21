@@ -37,8 +37,8 @@ export class MapComponent implements OnInit {
             tiles: [
               'http://51.15.160.236:9055/1866/{z}/{x}/{y}/vector.pbf'
             ],
-            'minzoom': 6,
-            'maxzoom': 14
+            'minzoom': 1,
+            'maxzoom': 25
           });
       
           this.map.addLayer({

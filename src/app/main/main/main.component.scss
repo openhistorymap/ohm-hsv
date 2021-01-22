@@ -11,3 +11,12 @@ mat-sidenav{
     min-width: 400px;
     max-width: 600px;
 }
+
+.small_spacer{
+    width: 40px;
+}
+
+app-viewer{
+    width: calc(100% - 4px);
+    display: block;
+}

@@ -81,4 +81,8 @@ export class MainComponent implements OnInit {
   addLocation() {
     this.d.open(LocatorComponent, {data: { image: this.item }});
   }
+
+  addImageMassive(){
+    
+  }
 }

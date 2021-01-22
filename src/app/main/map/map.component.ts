@@ -21,7 +21,12 @@ export class MapComponent implements OnInit {
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/light-v10', // style URL
       center: [11.34359240476931, 44.49484685252506], // starting position [lng, lat]
-      zoom: 14 // starting zoom
+      zoom: 14, // starting zoom,
+      transformRequest: (url, resourceType) => {
+        return {
+          url: url.replace('{atDate}', '1866')
+        }
+      }
     });
     
     this.map.on('moveend', () => {
@@ -35,7 +40,7 @@ export class MapComponent implements OnInit {
           this.map.addSource('pics', {
             type: 'vector',
             tiles: [
-              'http://51.15.160.236:9055/1866/{z}/{x}/{y}/vector.pbf'
+              'http://51.15.160.236:9055/{atDate}/{z}/{x}/{y}/vector.pbf'
             ],
             'minzoom': 1,
             'maxzoom': 25
@@ -63,6 +68,7 @@ export class MapComponent implements OnInit {
           });
 
           this.map.on('click', 'pics-dots', (e) => {
+            console.log(e.features[0]);
             this.itemSelected.emit(e.features[0]);
           });
 

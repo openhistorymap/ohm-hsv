@@ -12,12 +12,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [MapComponent, ViewerComponent, MainComponent, TimelineComponent],
   imports: [
+    HttpClientModule,
     BrowserModule,
     MatToolbarModule,
     MatButtonModule,
@@ -26,6 +29,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDialogModule,
     MatChipsModule,
     MatExpansionModule,
+    MatListModule,
     CommonModule,
   ],
   exports: [MainComponent]

@@ -11,6 +11,6 @@
 <div mat-dialog-actions>
   <div class="spacer"></div>
   <button mat-button>Cancel</button>
-  <button mat-button mat-raised-button color="primary">Save and Close</button>
-  <button mat-button mat-raised-button color="primary">Save and Locate</button>
+  <button mat-button mat-raised-button (click)="saveAndClose()" color="primary">Save and Close</button>
+  <button mat-button mat-raised-button (click)="saveAndLocate()" color="primary">Save and Locate</button>
 </div>

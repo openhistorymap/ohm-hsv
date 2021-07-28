@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dialog',
@@ -11,6 +12,17 @@ export class DialogComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  saveAndClose(){
+    this.save().subscribe(d=>{
+      //
+    })
+  }
+  saveAndLocate(){}
+
+  save(): Observable<any> {
+    return null;
   }
 
 }

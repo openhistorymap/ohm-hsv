@@ -20,3 +20,13 @@ app-viewer{
     width: calc(100% - 4px);
     display: block;
 }
+
+
+.sidebar {
+    width: 256px;
+    background-color: #3f51b5;
+    color: white;
+    a{
+        color:white !important;
+    }
+}

@@ -6,10 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainModule } from './main/main.module';
 import { UploaderModule } from './uploader/uploader.module';
+import { CollectionComponent } from './collection/collection.component';
+import { ExpoComponent } from './expo/expo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CollectionComponent,
+    ExpoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { DialogComponent } from 'src/app/uploader/dialog/dialog.component';
-import { LocatorComponent } from 'src/app/uploader/locator/locator.component';
-import { UploaderComponent } from 'src/app/uploader/uploader/uploader.component';
+import { DialogComponent } from '../../uploader/dialog/dialog.component';
+import { LocatorComponent } from '../../uploader/locator/locator.component';
+import { UploaderComponent } from '../../uploader/uploader/uploader.component';
 import { MapComponent } from '../map/map.component';
 
 @Component({
@@ -16,27 +17,34 @@ export class MainComponent implements OnInit {
 
 
   @Output() newState: EventEmitter<any> = new EventEmitter<any>();
-  atDate = 1866;
+  atDate = 1955;
   zoom = 14;
   lat = 44.49640804841195;
   lng = 11.343678235458356;
   item_id: string;
   item: any;
+  infoData: any;
 
   @ViewChild(MapComponent) map: MapComponent;
 
   constructor(
     private l: Location,
     private ar: ActivatedRoute,
-    private d: MatDialog
+    private d: MatDialog,
+    private http: HttpClient,
+
   ) { }
 
   ngOnInit(): void {
+    this.http.get('assets/info.json').subscribe(data => {
+      this.infoData = data;
+    })
     this.ar.params.subscribe(params => {
-      this.atDate = params.atDate;
-      this.zoom = params.zoom;
-      this.lat = params.lat;
-      this.lng = params.lng;
+      console.log(params)
+      this.atDate = params.atDate?params.atDate:1955;
+      this.zoom = params.zoom?params.zoom:14;
+      this.lat = params.lat?params.lat:44.49640804841195;
+      this.lng = params.lng?params.lng:11.343678235458356;
       if(params.ref) {
         this.item_id = params.ref;
       }
@@ -50,6 +58,7 @@ export class MainComponent implements OnInit {
   onDateChange(data) {
     this.atDate = data.float;
     this.changeUrl();
+    this.map.refresh();
   }
 
   onMoveEnd(data) {
@@ -83,6 +92,5 @@ export class MainComponent implements OnInit {
   }
 
   addImageMassive(){
-    
   }
 }

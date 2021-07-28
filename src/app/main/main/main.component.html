@@ -3,21 +3,32 @@
     <span class="title">OHM Historical View</span>
     <span class="spacer"></span>
     <span class="spacer"></span>
-    <button (click)="addImageMassive()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
+    <button disabled (click)="addImageMassive()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
     <span class="small_spacer"></span>
-    <button (click)="addImage()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
-    <button (click)="addLocation()" mat-button mat-icon-button><mat-icon>map</mat-icon></button>
+    <button disabled (click)="addImage()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
+    <button disabled (click)="addLocation()" mat-button mat-icon-button><mat-icon>map</mat-icon></button>
     <button [disabled]="viewer.item===undefined" (click)="localside.toggle()" mat-button mat-icon-button><mat-icon>room</mat-icon></button>
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #globalside mode="over" >Sidenav content</mat-sidenav>
+    <mat-sidenav class="sidebar" #globalside mode="over" >
+        <div *ngIf="infoData" class="info" [innerHtml]="infoData?.info">
+
+        </div>
+        <mat-nav-list>
+            <a target="_blank" href="https://www.openhistorymap.org/" mat-list-item>OHM Home</a>
+            <a target="_blank" href="https://blog.openhistorymap.org/" mat-list-item>OHM Blog</a>
+            <a target="_blank" href="https://index.openhistorymap.org/" mat-list-item>OHM Index</a>
+            <a target="_blank" href="https://www.openhistorymap.org/about/" mat-list-item>About OHM</a>
+            <a target="_blank" href="https://www.openhistorymap.org/help/" mat-list-item>How to help/donate to OHM</a>
+        </mat-nav-list>
+    </mat-sidenav>
     <mat-sidenav id="localside" #localside mode="side" position="end" >
         <app-viewer #viewer></app-viewer>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-map (itemSelected)="localside.open(); viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
-        <app-timeline (dateChanged)="onDateChange($event)"></app-timeline>
+        <app-map #map [atDate]="atDate" (itemSelected)="localside.open(); viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
+        <app-timeline [atDate]="atDate" (dateChanged)="onDateChange($event)"></app-timeline>
     </mat-sidenav-content>
   </mat-sidenav-container>
   

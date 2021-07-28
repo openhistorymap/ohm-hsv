@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 declare const mapboxgl;
 
@@ -11,8 +11,11 @@ export class MapComponent implements OnInit {
 
   map;
 
+  @Input() atDate = 1955;
+
   @Output() itemSelected: EventEmitter<any> = new EventEmitter<any>();
   @Output() moveend: EventEmitter<any> = new EventEmitter<any>();
+  featureId;
   constructor() { }
 
   ngOnInit(): void {
@@ -20,11 +23,11 @@ export class MapComponent implements OnInit {
     this.map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/light-v10', // style URL
-      center: [11.34359240476931, 44.49484685252506], // starting position [lng, lat]
+      center: [4.406654828285127, 50.84512821447697], // starting position [lng, lat]
       zoom: 14, // starting zoom,
       transformRequest: (url, resourceType) => {
         return {
-          url: url.replace('{atDate}', '1866')
+          url: url.replace('{atDate}', this.atDate?this.atDate.toString():1955)
         }
       }
     });
@@ -47,16 +50,40 @@ export class MapComponent implements OnInit {
           });
       
           this.map.addLayer({
-              'id': 'pics-dots',
-              'source': 'pics',
-              'source-layer':'pics',
-              'type': 'circle',
-              'layout': {},
-              'paint': {
-                'circle-color': '#f08',
-                'circle-opacity': 0.4
-              }
-          });
+            'id': 'pics-dots',
+            'source': 'pics',
+            'source-layer':'pics',
+            'type': 'circle',
+            'layout': {},
+            'paint': {
+              'circle-radius': [
+                'case',
+                ['boolean',
+                  ['feature-state', 'hover'],
+                  false
+                ],5,3],
+              'circle-color': [
+                "match", ["get", "media_type"],
+                "photo", '#111',
+                "painting", "#d36e70",
+                "#111"],
+              'circle-opacity': 0.7
+            }
+        });
+
+        this.map.addLayer({
+            'filter': ['>=', ['zoom'], 13],
+            'id': 'pics-dir',
+            'source': 'pics',
+            'source-layer':'pics',
+            'type': 'symbol',
+            'layout': {
+              'icon-image':'campsite-15',
+              'icon-allow-overlap':true,
+              
+              'icon-rotate':["+", 0,["get", "direction" ]],
+            }
+        }, 'pics-dots');
 
           this.map.on('mouseenter', 'pics-dots', () => {
             this.map.getCanvas().style.cursor = 'pointer';
@@ -69,10 +96,25 @@ export class MapComponent implements OnInit {
 
           this.map.on('click', 'pics-dots', (e) => {
             console.log(e.features[0]);
+                    
+            this.featureId = e.features[0].id;
+
+            // When the mouse moves over the earthquakes-viz layer, update the
+            // feature state for the feature under the mouse
+            this.map.setFeatureState({
+              source: 'pics-dots',
+              id: this.featureId,
+            }, {
+              hover: true
+            });
             this.itemSelected.emit(e.features[0]);
           });
 
     })
+  }
+
+  refresh() {
+    this.map.getSource('pics').setSourceProperty(() => { });
   }
 
 }

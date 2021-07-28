@@ -25,11 +25,11 @@ export class OhmHsvService {
   
   saveLocation(imgId, location): Observable<any>{
     console.log(imgId, location);
-    return this.http.post(`${this.baseurl}pic/${imgId}/location`, JSON.stringify(location))
+    return this.http.post(`${this.baseurl}pic/${imgId}/loc`, JSON.stringify(location))
   }
 
   getData(imgId): Observable<any> {
-    return this.http.get(`${this.baseurl}pic/${imgId}`)
+    return this.http.get(`${this.baseurl}pic/${imgId}`);
   }
 
   getNearby(lat:number, lng:number, radius=1000){

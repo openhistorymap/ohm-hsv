@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ConverterService } from '@ohm/utils';
+import { ActivatedRoute } from '@angular/router';
+import { ConverterService } from '@ohmap/utils';
 
 declare const vis;
 
@@ -17,7 +18,8 @@ export class TimelineComponent implements OnInit {
   @Output() dateChanged: EventEmitter<any> = new EventEmitter<any>();
   
   constructor(
-    private conv: ConverterService
+    private conv: ConverterService,
+    private ar: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +42,12 @@ export class TimelineComponent implements OnInit {
     
     this.timeline.addCustomTime(this.conv.floatToDate(this.atDate), 'atTime');
     const d = this.conv.floatToDate(this.atDate);
-    this.timeline.setWindow(new Date(d.getFullYear() - 10, d.getMonth(), d.getDate()), new Date(d.getFullYear() + 10, d.getMonth(), d.getDate()));
+
+    if (this.ar.snapshot.params.from){
+      this.timeline.setWindow(new Date(this.ar.snapshot.params.from), new Date(this.ar.snapshot.params.to));
+    } else {
+      this.timeline.setWindow(new Date(d.getFullYear() - 10, d.getMonth(), d.getDate()), new Date(d.getFullYear() + 10, d.getMonth(), d.getDate()));
+    }
   }
 
 }

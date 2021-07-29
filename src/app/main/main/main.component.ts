@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
 
 
   @Output() newState: EventEmitter<any> = new EventEmitter<any>();
+
   atDate = 1955;
   zoom = 14;
   lat = 44.49640804841195;
@@ -41,10 +42,12 @@ export class MainComponent implements OnInit {
     })
     this.ar.params.subscribe(params => {
       console.log(params)
-      this.atDate = params.atDate?params.atDate:1955;
-      this.zoom = params.zoom?params.zoom:14;
-      this.lat = params.lat?params.lat:44.49640804841195;
-      this.lng = params.lng?params.lng:11.343678235458356;
+      this.atDate = params.date?parseFloat(params.date):1955;
+      this.zoom = params.zoom?parseFloat(params.zoom):14;
+      this.lat = params.x?parseFloat(params.x):44.49640804841195;
+      this.lng = params.y?parseFloat(params.y):11.343678235458356;
+
+      console.log(this.atDate, this.zoom, this.lat, this.lng);
       if(params.ref) {
         this.item_id = params.ref;
       }

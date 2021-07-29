@@ -12,6 +12,9 @@ export class MapComponent implements OnInit {
   map;
 
   @Input() atDate = 1955;
+  @Input() lat = 50.84512821447697;
+  @Input() lng = 4.406654828285127;
+  @Input() zoom = 14;
 
   @Output() itemSelected: EventEmitter<any> = new EventEmitter<any>();
   @Output() moveend: EventEmitter<any> = new EventEmitter<any>();
@@ -23,8 +26,8 @@ export class MapComponent implements OnInit {
     this.map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/light-v10', // style URL
-      center: [4.406654828285127, 50.84512821447697], // starting position [lng, lat]
-      zoom: 14, // starting zoom,
+      center: [this.lng, this.lat], // starting position [lng, lat]
+      zoom: this.zoom, // starting zoom,
       transformRequest: (url, resourceType) => {
         return {
           url: url.replace('{atDate}', this.atDate?this.atDate.toString():1955)

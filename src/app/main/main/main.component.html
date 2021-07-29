@@ -27,7 +27,7 @@
         <app-viewer #viewer></app-viewer>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-map #map [atDate]="atDate" (itemSelected)="localside.open(); viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
+        <app-map #map [atDate]="atDate" [lat]="lat" [lng]="lng" [zoom]="zoom" (itemSelected)="localside.open(); viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
         <app-timeline [atDate]="atDate" (dateChanged)="onDateChange($event)"></app-timeline>
     </mat-sidenav-content>
   </mat-sidenav-container>

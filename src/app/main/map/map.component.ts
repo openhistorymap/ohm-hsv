@@ -43,7 +43,7 @@ export class MapComponent implements OnInit {
           this.map.addSource('pics', {
             type: 'vector',
             tiles: [
-              'http://51.15.160.236:9055/{atDate}/{z}/{x}/{y}/vector.pbf'
+              'https://api.view.openhistorymap.org/{atDate}/{z}/{x}/{y}/vector.pbf'
             ],
             'minzoom': 1,
             'maxzoom': 25

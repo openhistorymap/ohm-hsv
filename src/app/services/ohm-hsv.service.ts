@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class OhmHsvService {
 
-  baseurl = 'http://51.15.160.236/';
+  baseurl = 'https://api.view.openhistorymap.org/';
 
   constructor(
     private http: HttpClient

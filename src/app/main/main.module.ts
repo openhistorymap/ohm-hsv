@@ -19,27 +19,7 @@ import { PicComponent } from './pic/pic.component';
 import { UploaderModule } from '../uploader/uploader.module';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
-
-
-export enum ExpeditionOrderState {
-  PROCEED = "proceed",
-  HOLD = "hold",
-  ABORT = "abort"
-}
-
-type StandardEnum<T> = {
-  [id: string]: T | string;
-  [nu: number]: string;
-}
-
-export function deserializeExpeditionOrderState<T extends StandardEnum<string>> (tenum: T, value: string): keyof StandardEnum<string> {
-  for (let key in tenum) {
-    if (value == tenum[key]) {
-      return tenum[key];
-    }
-  }
-  return null;
-}
+import { MatomoModule } from 'ngx-matomo';
 
 @NgModule({
   declarations: [MapComponent, ViewerComponent, MainComponent, TimelineComponent, PicComponent],
@@ -58,6 +38,7 @@ export function deserializeExpeditionOrderState<T extends StandardEnum<string>> 
     MatInputModule,
     CommonModule,
     UploaderModule,
+    MatomoModule,
   ],
   exports: [MainComponent]
 })

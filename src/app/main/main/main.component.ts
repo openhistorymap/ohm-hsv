@@ -7,6 +7,7 @@ import { DialogComponent } from '../../uploader/dialog/dialog.component';
 import { LocatorComponent } from '../../uploader/locator/locator.component';
 import { UploaderComponent } from '../../uploader/uploader/uploader.component';
 import { MapComponent } from '../map/map.component';
+import { MatomoTracker } from 'ngx-matomo';
 
 @Component({
   selector: 'app-main',
@@ -33,6 +34,7 @@ export class MainComponent implements OnInit {
     private ar: ActivatedRoute,
     private d: MatDialog,
     private http: HttpClient,
+    private matomoTracker: MatomoTracker
 
   ) { }
 
@@ -75,8 +77,11 @@ export class MainComponent implements OnInit {
   changeUrl(): void{
     if( this.item) {
       this.l.go(`/map/${this.atDate}/${this.zoom}/${this.lat}/${this.lng};ref=${this.item.properties.id}`);
+      this.matomoTracker.trackPageView(`/map/${this.atDate}/${this.zoom}/${this.lat}/${this.lng};ref=${this.item.properties.id}`);
+
     } else {
       this.l.go(`/map/${this.atDate}/${this.zoom}/${this.lat}/${this.lng}`);
+      this.matomoTracker.trackPageView(`/map/${this.atDate}/${this.zoom}/${this.lat}/${this.lng}`);
     }
     this.newState.emit({
       date: this.atDate,

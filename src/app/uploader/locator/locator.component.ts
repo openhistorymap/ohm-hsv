@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { OhmHsvService } from '../../services/ohm-hsv.service';
 
 declare const mapboxgl;
 
@@ -11,7 +11,7 @@ declare const mapboxgl;
 })
 export class LocatorComponent implements OnInit {
 
-  input_image = 'https://upload.wikimedia.org/wikipedia/commons/6/66/Fotografia_dell%27Emilia_-_Bologna_-_Madonna_di_San_Luca.jpg';
+  @Input() input_image = 'https://upload.wikimedia.org/wikipedia/commons/6/66/Fotografia_dell%27Emilia_-_Bologna_-_Madonna_di_San_Luca.jpg';
 
   base_url = 'https://maps.googleapis.com/maps/api/streetview?size=400x300&location=$LAT$,$LON$&fov=$FOV$&heading=$HEADING$&pitch=0&key=AIzaSyD7M0G4NfE9oAdx8Q8DIflKRj7ZCCyBMHw';// &signature=$SIGNATURE$'
   map;
@@ -21,9 +21,11 @@ export class LocatorComponent implements OnInit {
     angle: 80,
     height:1.60
   };
+
+  @Output() locStore: EventEmitter<any> = new EventEmitter<any>();
+  
   constructor(
-    public dialogRef: MatDialogRef<LocatorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private hsv:OhmHsvService
   ) { }
 
   ngOnInit(): void {
@@ -87,6 +89,10 @@ export class LocatorComponent implements OnInit {
       .replace('$LON$', this.meta.lng)
       .replace('$FOV$', this.meta.angle)
       .replace('$HEADING$', this.meta.direction)
+  }
+
+  saveLoc(){
+    this.locStore.emit(this.meta);
   }
 
 }

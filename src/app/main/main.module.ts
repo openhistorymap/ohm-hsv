@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MapComponent } from './map/map.component';
 import { ViewerComponent } from './viewer/viewer.component';
@@ -15,10 +15,34 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { HttpClientModule } from '@angular/common/http';
+import { PicComponent } from './pic/pic.component';
+import { UploaderModule } from '../uploader/uploader.module';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
 
+
+export enum ExpeditionOrderState {
+  PROCEED = "proceed",
+  HOLD = "hold",
+  ABORT = "abort"
+}
+
+type StandardEnum<T> = {
+  [id: string]: T | string;
+  [nu: number]: string;
+}
+
+export function deserializeExpeditionOrderState<T extends StandardEnum<string>> (tenum: T, value: string): keyof StandardEnum<string> {
+  for (let key in tenum) {
+    if (value == tenum[key]) {
+      return tenum[key];
+    }
+  }
+  return null;
+}
 
 @NgModule({
-  declarations: [MapComponent, ViewerComponent, MainComponent, TimelineComponent],
+  declarations: [MapComponent, ViewerComponent, MainComponent, TimelineComponent, PicComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -30,7 +54,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatChipsModule,
     MatExpansionModule,
     MatListModule,
+    MatTabsModule,
+    MatInputModule,
     CommonModule,
+    UploaderModule,
   ],
   exports: [MainComponent]
 })

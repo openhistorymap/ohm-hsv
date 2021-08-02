@@ -39,6 +39,7 @@ import { AngleComponent } from './angle/angle.component';
     MatToolbarModule,
     MatIconModule
   ],
-  exports: [DialogComponent]
+  exports: [
+    MatDialogModule, MetadataComponent, UploaderComponent, DialogComponent, LocatorComponent, AngleComponent]
 })
 export class UploaderModule { }

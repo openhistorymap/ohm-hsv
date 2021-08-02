@@ -16,7 +16,7 @@
       "dom"
     ],
     "paths": {
-      "@ohm/utils": [
+      "@ohmap/utils": [
         "dist/ohm-lib/ohm-lib",
         "dist/ohm-lib"
       ],

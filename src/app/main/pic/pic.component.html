@@ -22,23 +22,30 @@
     </mat-sidenav>
     <mat-sidenav-content id="page">
         <mat-toolbar>
-            
-    <span class="spacer"></span>
-            
-        <mat-paginator [length]="count"
-               [pageSize]="25"
-               (page)="getPage($event)"
-               aria-label="Select page">
-    </mat-paginator>
-</mat-toolbar>
-        <mat-grid-list  cols="5" rowHeight="100px" gutterSize="5">
-            <mat-grid-tile [routerLink]="['/pics', i.id]"  *ngFor="let i of items"><img src="{{i.url}}" style="max-height:100px; max-width: 100px; display: inline-block"></mat-grid-tile>
-        </mat-grid-list>
-        <mat-paginator [length]="count"
-               [pageSize]="25"
-               (page)="getPage($event)"
-               aria-label="Select page">
-</mat-paginator>
+            <button mat-button mat-icon-button><mat-icon>save</mat-icon></button>
+            <button style="background-color: red; color:white" mat-button mat-icon-button><mat-icon>delete</mat-icon></button>
+        </mat-toolbar>
+        <mat-tab-group>
+            <mat-tab label="Meta"> 
+                <mat-list>
+                    <ng-container *ngFor="let item of pic_meta | keyvalue">
+                    <mat-list-item  *ngIf="item.key !== 'additional'">
+                        
+                            {{item.key}}: {{item.value}}
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list> 
+                <hr>
+                <mat-list>
+                    <mat-list-item *ngFor="let item of pic_meta.additional | keyvalue">{{item.key}}: {{item.value|json}}</mat-list-item>
+                </mat-list>
+             </mat-tab>
+            <mat-tab label="Locator">
+                
+    <ng-template matTabContent>
+         <app-locator [input_image]="pic_meta.url" (locStore)="storeLocation($event)"></app-locator> 
+        </ng-template></mat-tab>
+        </mat-tab-group>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+</mat-sidenav-container>
   

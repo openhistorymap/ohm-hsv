@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-viewer',
@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ViewerComponent implements OnInit {
 
   @Input() item;
+
+  @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -21,6 +23,10 @@ export class ViewerComponent implements OnInit {
     }
     ret+='</table>';
     return ret;
+  }
+
+  public doclose(){
+    this.close.emit();
   }
 
 }

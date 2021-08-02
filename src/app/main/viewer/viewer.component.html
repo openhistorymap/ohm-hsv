@@ -1,20 +1,23 @@
-<img [src]="item?.properties.url" style="width: 100%">
-<h1>{{item?.properties.description}}</h1>
-<div>{{item?.properties.ohm_from}} - {{item?.properties.ohm_to}}</div>
-<p>{{item?.properties.notes}}</p>
-<mat-chip-list>
-    <mat-chip>{{item?.properties.media_type}}</mat-chip>
-    <mat-chip>{{item?.properties.media_subtype}}</mat-chip>
-    <mat-chip>{{item?.properties.collection}}</mat-chip>
-</mat-chip-list>
+<div>
+    <button id="close" mat-fab (click)="doclose()"><mat-icon>close</mat-icon></button>
+    <img [src]="item?.properties.url" style="width: 100%">
+    <h1>{{item?.properties.description}}</h1>
+    <div>{{item?.properties.ohm_from}} - {{item?.properties.ohm_to}}</div>
+    <p>{{item?.properties.notes}}</p>
+    <mat-chip-list>
+        <mat-chip>{{item?.properties.media_type}}</mat-chip>
+        <mat-chip>{{item?.properties.media_subtype}}</mat-chip>
+        <mat-chip>{{item?.properties.collection}}</mat-chip>
+    </mat-chip-list>
 
-<mat-accordion>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-              More info
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div *ngIf="item" [innerHTML]="tabelize(item)"></div>
-    </mat-expansion-panel>
-</mat-accordion>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                More info
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngIf="item" [innerHTML]="tabelize(item)"></div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

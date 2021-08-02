@@ -6,7 +6,7 @@
     <button disabled (click)="addImageMassive()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
     <span class="small_spacer"></span>
     <button disabled (click)="addImage()" mat-button mat-icon-button><mat-icon>upload</mat-icon></button>
-    <button disabled (click)="addLocation()" mat-button mat-icon-button><mat-icon>map</mat-icon></button>
+    <button title="Locate unlocated image" (click)="addLocation()" mat-button mat-icon-button><mat-icon>map</mat-icon></button>
     <button [disabled]="viewer.item===undefined" (click)="localside.toggle()" mat-button mat-icon-button><mat-icon>room</mat-icon></button>
 </mat-toolbar>
 
@@ -24,11 +24,11 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav id="localside" #localside mode="side" position="end" >
-        <app-viewer #viewer></app-viewer>
+        <app-viewer #viewer (close)="localside.close()"></app-viewer>
     </mat-sidenav>
     <mat-sidenav-content>
         <app-map #map [atDate]="atDate" [lat]="lat" [lng]="lng" [zoom]="zoom" (itemSelected)="localside.open(); viewer.item=$event" (moveend)="onMoveEnd($event)"></app-map>
         <app-timeline [atDate]="atDate" (dateChanged)="onDateChange($event)"></app-timeline>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  
+  <footer>Created with  in Bologna by <a href="https://www.openhistorymap.org">Open History Map</a></footer>

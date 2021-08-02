@@ -10,7 +10,7 @@ export class ConverterService {
   
   dateToFloat(date: Date): number{
     let ret = date.getFullYear();
-    ret += (date.getMonth() + 1) / 12;
+    ret += (date.getMonth()) / 12;
     ret += (date.getDate()) * (1 / 12 / 31);
     ret += (date.getHours()) * (1 / 12 / 31 / 24);
     ret += (date.getMinutes()) * (1 / 12 / 31 / 24 / 60);

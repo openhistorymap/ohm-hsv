@@ -1,12 +1,17 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { OhmCommonComponent } from './ohm-common.component';
-
+import { OhmSidebarComponent } from './ohm-sidebar/ohm-sidebar.component';
+import { MatListModule } from '@angular/material/list';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [OhmCommonComponent],
+  declarations: [OhmSidebarComponent],
   imports: [
+    CommonModule,
+    HttpClientModule,
+    MatListModule
   ],
-  exports: [OhmCommonComponent]
+  exports: [OhmSidebarComponent]
 })
 export class OhmCommonModule { }

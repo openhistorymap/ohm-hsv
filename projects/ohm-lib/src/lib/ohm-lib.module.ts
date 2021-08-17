@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { OhmLibComponent } from './ohm-lib.component';
+import { HumanizePipe } from './humanize.pipe';
 
 
 
 @NgModule({
-  declarations: [OhmLibComponent],
+  declarations: [OhmLibComponent, HumanizePipe],
   imports: [
   ],
-  exports: [OhmLibComponent]
+  exports: [OhmLibComponent, HumanizePipe]
 })
 export class OhmLibModule { }

@@ -20,7 +20,7 @@
         "dist/ohm-lib/ohm-lib",
         "dist/ohm-lib"
       ],
-      "ohm-common": [
+      "@ohmap/common": [
         "dist/ohm-common/ohm-common",
         "dist/ohm-common"
       ]

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OhmCommonComponent } from './ohm-common.component';
+import { OhmSidebarComponent } from './ohm-sidebar.component';
 
-describe('OhmCommonComponent', () => {
-  let component: OhmCommonComponent;
-  let fixture: ComponentFixture<OhmCommonComponent>;
+describe('OhmSidebarComponent', () => {
+  let component: OhmSidebarComponent;
+  let fixture: ComponentFixture<OhmSidebarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OhmCommonComponent ]
+      declarations: [ OhmSidebarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OhmCommonComponent);
+    fixture = TestBed.createComponent(OhmSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

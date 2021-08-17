@@ -2,7 +2,7 @@
     <button id="close" mat-fab (click)="doclose()"><mat-icon>close</mat-icon></button>
     <img [src]="item?.properties.url" style="width: 100%">
     <h1>{{item?.properties.description}}</h1>
-    <div>{{item?.properties.ohm_from}} - {{item?.properties.ohm_to}}</div>
+    <div>{{item?.properties.ohm_from|humanize|date: 'dd/MM/yyyy'}} - {{item?.properties.ohm_to|humanize|date: 'dd/MM/yyyy'}}</div>
     <p>{{item?.properties.notes}}</p>
     <mat-chip-list>
         <mat-chip>{{item?.properties.media_type}}</mat-chip>

@@ -22,6 +22,7 @@
             <a target="_blank" href="https://www.openhistorymap.org/about/" mat-list-item>About OHM</a>
             <a target="_blank" href="https://www.openhistorymap.org/help/" mat-list-item>How to help/donate to OHM</a>
         </mat-nav-list>
+        <lib-ohm-sidebar></lib-ohm-sidebar>
     </mat-sidenav>
     <mat-sidenav id="localside" #localside mode="side" position="end" >
         <app-viewer #viewer (close)="localside.close()"></app-viewer>

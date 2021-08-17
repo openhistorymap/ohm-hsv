@@ -39,4 +39,8 @@ export class OhmHsvService {
       radius: '' + radius
     }});
   }
+
+  saveLoc(loc){
+    return this.http.post(this.baseurl+'pic', {})
+  }
 }

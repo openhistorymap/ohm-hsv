@@ -20,6 +20,8 @@ import { UploaderModule } from '../uploader/uploader.module';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import { MatomoModule } from 'ngx-matomo';
+import { OhmLibModule } from '@ohmap/utils';
+import { OhmCommonModule } from '@ohmap/common';
 
 @NgModule({
   declarations: [MapComponent, ViewerComponent, MainComponent, TimelineComponent, PicComponent],
@@ -37,6 +39,8 @@ import { MatomoModule } from 'ngx-matomo';
     MatTabsModule,
     MatInputModule,
     CommonModule,
+    OhmLibModule,
+    OhmCommonModule,
     UploaderModule,
     MatomoModule,
   ],

@@ -1,0 +1,10 @@
+<div *ngIf="infoData" class="info" [innerHtml]="infoData?.info">
+
+</div>
+<mat-nav-list>
+    <a *ngFor="let button of infoData.buttons" target="_blank" href="{{button.url}}" mat-list-item>{{button.title}}</a>
+    <a target="_blank" href="https://blog.openhistorymap.org/" mat-list-item>OHM Blog</a>
+    <a target="_blank" href="https://index.openhistorymap.org/" mat-list-item>OHM Index</a>
+    <a target="_blank" href="https://www.openhistorymap.org/about/" mat-list-item>About OHM</a>
+    <a target="_blank" href="https://www.openhistorymap.org/help/" mat-list-item>How to help/donate to OHM</a>
+</mat-nav-list>

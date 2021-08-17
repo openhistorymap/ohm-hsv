@@ -1,3 +1,12 @@
 {
-    "info": "<a style='color:white' href='https://www.openhistorymap.org' target='_blank'>OpenHistoryMap</a> is an italian non profit association (APS) founded by a team of archaeologists and software developers based in Bologna, Italy. The aim is the creation of a web-GIS platform containing spatial historical and archaeological data. <br><br>OHM is an open source project using open source tools. The code is available on github<br><br>Technology and academia are the main sources of data, as you can see in our <a target='blank' href='https://index.openhistorymap.org'>OHM Data Index</a>, but end users can contribute as well, by sharing their datasets and by exploring the map and the data."
+    "info": "<a style='color:white' href='https://www.openhistorymap.org' target='_blank'>OpenHistoryMap</a> is an italian non profit association (APS) founded by a team of archaeologists and software developers based in Bologna, Italy. The aim is the creation of a web-GIS platform containing spatial historical and archaeological data. <br><br>OHM is an open source project using open source tools. The code is available on github<br><br>Technology and academia are the main sources of data, as you can see in our <a target='blank' href='https://index.openhistorymap.org'>OHM Data Index</a>, but end users can contribute as well, by sharing their datasets and by exploring the map and the data.",
+    "buttons": [
+        {"excludeOn": [], "title": "OHM Home", "url": "https://www.openhistorymap.org/"},
+        {"excludeOn": [], "title": "OHM Blog", "url": "https://blog.openhistorymap.org/"},
+        {"excludeOn": ["index"], "title": "OHM Index", "url": "https://index.openhistorymap.org/"},
+        {"excludeOn": ["map"], "title": "OHM Map", "url": "https://map.openhistorymap.org/"},
+        {"excludeOn": ["viewer"], "title": "OHM Viewer", "url": "https://view.openhistorymap.org/"},
+        {"excludeOn": [], "title": "About OHM", "url": "https://www.openhistorymap.org/about/"},
+        {"excludeOn": [], "title": "How to help/donate to OHM", "url": "https://www.openhistorymap.org/help/"}
+    ]
 }

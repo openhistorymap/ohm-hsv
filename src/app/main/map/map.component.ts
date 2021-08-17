@@ -29,6 +29,7 @@ export class MapComponent implements OnInit {
       center: [this.lng, this.lat], // starting position [lng, lat]
       zoom: this.zoom, // starting zoom,
       transformRequest: (url, resourceType) => {
+        console.log(url, resourceType);
         return {
           url: url.replace('{atDate}', this.atDate?this.atDate.toString():1955)
         }
@@ -43,14 +44,22 @@ export class MapComponent implements OnInit {
 
     this.map.on('load', () => {
       
-          this.map.addSource('pics', {
-            type: 'vector',
-            tiles: [
-              'https://api.view.openhistorymap.org/{atDate}/{z}/{x}/{y}/vector.pbf'
-            ],
-            'minzoom': 1,
-            'maxzoom': 25
-          });
+      this.map.addSource('pics', {
+        type: 'vector',
+        tiles: [
+          'https://api.view.openhistorymap.org/{atDate}/{z}/{x}/{y}/vector.pbf'
+        ],
+        'minzoom': 1,
+        'maxzoom': 25
+      });
+      this.map.addSource('eph', {
+        type: 'vector',
+        tiles: [
+          'https://tiles.events.openhistorymap.org/items/{atDate}/{z}/{x}/{y}/vector.pbf',
+        ],
+        'minzoom': 3,
+        'maxzoom': 25
+      });
       
           this.map.addLayer({
             'id': 'pics-dots',
@@ -75,18 +84,54 @@ export class MapComponent implements OnInit {
         });
 
         this.map.addLayer({
-            'filter': ['>=', ['zoom'], 13],
-            'id': 'pics-dir',
-            'source': 'pics',
-            'source-layer':'pics',
-            'type': 'symbol',
-            'layout': {
-              'icon-image':'campsite-15',
-              'icon-allow-overlap':true,
-              
-              'icon-rotate':["+", 0,["get", "direction" ]],
-            }
-        }, 'pics-dots');
+          'filter': ['>=', ['zoom'], 13],
+          'id': 'pics-dir',
+          'source': 'pics',
+          'source-layer':'pics',
+          'type': 'symbol',
+          'layout': {
+            'icon-image':'campsite-15',
+            'icon-allow-overlap':true,
+            
+            'icon-rotate':["+", 0,["get", "direction" ]],
+          }
+      }, 'pics-dots');
+
+      
+      this.map.addLayer({
+        'id': 'eph',
+        'source': 'eph',
+        'source-layer':'eph',
+        'type': 'circle',
+        'layout': {},
+        'paint': {
+          'circle-radius': [
+            'interpolate', ['linear'], ['zoom'],
+            0, 2,
+            9, 2,
+            11, ['/', ['*', 10, ['number', ['get', 'bombing:tons'], 1]], 1],
+            13, ['/', ['*', 30, ['number', ['get', 'bombing:tons'], 1]], 1],
+          ],
+          'circle-color':"#ff0000",
+          'circle-opacity':0.6
+        }
+    }, 'pics-dots');
+
+    
+    this.map.addLayer({
+      'id': 'eph-label',
+      'source': 'eph',
+      'source-layer':'eph',
+      'type': 'symbol',
+      'layout': {
+        'text-field': '{label}',
+        'text-size':10,
+        'text-offset':[0,-1]
+      }, 
+      'paint':{
+        'text-color':"#ff0000",
+      }
+  }, 'pics-dots');
 
           this.map.on('mouseenter', 'pics-dots', () => {
             this.map.getCanvas().style.cursor = 'pointer';
@@ -105,7 +150,8 @@ export class MapComponent implements OnInit {
             // When the mouse moves over the earthquakes-viz layer, update the
             // feature state for the feature under the mouse
             this.map.setFeatureState({
-              source: 'pics-dots',
+              source: 'pics',
+              sourceLayer:'pics-dots',
               id: this.featureId,
             }, {
               hover: true
@@ -118,6 +164,7 @@ export class MapComponent implements OnInit {
 
   refresh() {
     this.map.getSource('pics').setSourceProperty(() => { });
+    this.map.getSource('eph').setSourceProperty(() => { });
   }
 
 }
